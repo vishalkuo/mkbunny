@@ -10,7 +10,7 @@ STR = """
 |　ﾉ⌒＼ ￣￣ヽ　 ノ    
 ヽ＿＿＿＞､＿＿_／ 
 　　 ｜( 王 ﾉ〈 (\\__/) {3}
-　　 /ﾐ`ー―彡\\  (•ㅅ•) """
+　　 /ﾐ`ー―彡\\  (•ㅅ•) {4}"""
 
 I_MSG_STR = """
 ⠀         (\\__/) {0}
@@ -21,7 +21,11 @@ I_MSG_STR = """
 |　ﾉ⌒＼ ￣￣ヽ　 ノ    
 ヽ＿＿＿＞､＿＿_／ 
 　　 ｜( 王 ﾉ〈    (\\__/) {3}
-　　 /ﾐ`ー―彡\\  (•ㅅ•)  """
+　　 /ﾐ`ー―彡\\  (•ㅅ•) {4} """
+
+
+S_MAP = {"mono": STR, "imsg": I_MSG_STR}
+L_MAP = {"mono": 30, "imsg": 15}
 
 
 def _split_by_lspace(s, length):
@@ -44,7 +48,6 @@ def main():
         "--line_length",
         nargs="?",
         type=int,
-        default=30,
         help="The line wrap length for big bunny",
     )
     parser.add_argument(
@@ -53,23 +56,22 @@ def main():
         nargs="?",
         type=str,
         default="mono",
-        choices=["mono", "imsg"],
+        choices=S_MAP.keys(),
         help="How to format the bunny for pasting",
     )
     args = parser.parse_args()
 
     big_str = args.big_str
     small_str = args.small_str
-    llength = args.line_length
     fmt = args.format
+    llength = args.line_length or L_MAP[fmt]
     bs1, bs2, bs3 = "", "", ""
     bs1, bs2 = _split_by_lspace(big_str, llength)
     bs2, bs3 = _split_by_lspace(bs2, llength)
 
-    if fmt == "mono":
-        print(STR.format(bs1, bs2, bs3, small_str))
-    elif fmt == "imsg":
-        print(I_MSG_STR.format(bs1, bs2, bs3, small_str))
+    bunny = S_MAP[fmt]
+    ss1, ss2 = _split_by_lspace(small_str, llength - (len(bunny[8]) - len(bunny[3])))
+    print(bunny.format(bs1, bs2, bs3, ss1, ss2))
 
 
 if __name__ == "__main__":
