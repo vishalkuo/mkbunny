@@ -35,6 +35,21 @@ $ python3 mkbunny.py "My classmates' side projects" "my side projects" -f imsg
 　　 /ﾐ`ー―彡\  (•ㅅ•)  
 ```
 
-It'll look weird in your terminal but copies beautifully to iMessage. 
+It'll look weird in your terminal but copies _beautifully_ to iMessage. 
+
+If line length is a problem, specify the `-l` flag
+```
+$ python3 mkbunny.py "My group members starting a project ahead of time" "me lol" -f imsg -l 20
+
+⠀         (\__/) My group members
+   ⠀  (•ㅅ•)     starting a project
+　＿ノ ヽ ノ＼  __  ahead of time
+ /　`/ ⌒Ｙ⌒ Ｙ　ヽ     
+( 　(三ヽ人　 /　　 |     
+|　ﾉ⌒＼ ￣￣ヽ　 ノ    
+ヽ＿＿＿＞､＿＿_／ 
+　　 ｜( 王 ﾉ〈    (\__/) me lol
+　　 /ﾐ`ー―彡\  (•ㅅ•)   
+```
 
 Further help can be found at `python3 mkbunny --help`
